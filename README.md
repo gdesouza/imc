@@ -11,3 +11,6 @@ mvn archetype:generate -DgroupId=imc
 ```bash 
 mvn package
 ```
+
+## Referencias
+http://www.mkyong.com/maven/how-to-create-a-java-project-with-maven/
