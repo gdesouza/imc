@@ -1,5 +1,12 @@
 
-# Created by https://www.gitignore.io/api/java,maven
+# Created by https://www.gitignore.io/api/code,java,maven
+
+### Code ###
+# Visual Studio Code - https://code.visualstudio.com/
+.settings/
+.vscode/
+tsconfig.json
+jsconfig.json
 
 ### Java ###
 # Compiled class file
@@ -39,4 +46,4 @@ buildNumber.properties
 # Avoid ignoring Maven wrapper jar file (.jar files are usually ignored)
 !/.mvn/wrapper/maven-wrapper.jar
 
-# End of https://www.gitignore.io/api/java,maven
+# End of https://www.gitignore.io/api/code,java,maven
