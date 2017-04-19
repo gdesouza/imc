@@ -19,15 +19,13 @@ public abstract class Pessoa {
 
     public Pessoa() {}
 
-
     protected Integer id;
     protected Sexo    sexo;
     protected String  nome;
     protected String  sobrenome;
     protected Integer idade;
-    protected Double   peso;
-    protected Double   altura;
-
+    protected Double  peso;
+    protected Double  altura;
 
     public Double GetImc() {
         return ( peso / (altura*altura) );

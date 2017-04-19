@@ -1,10 +1,13 @@
 package imc;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Hello world!
  *
  */
-public class App 
+public class App
 {
     public static void main( String[] args )
     {
@@ -12,14 +15,40 @@ public class App
         System.out.println("Le os registros de um arquivo CSV e obtem informações sobre os IMCs de uma população.");
         System.out.println("Sintaxe: CalculadorImc <arquivo.csv>");
 
-        ListaDePessoas lista = new ListaDePessoas(4);
-        lista.AdicionarPessoa( new Homem("Fulano1",  "De tal", 20, 82.0, 1.72) );
-        lista.AdicionarPessoa( new Homem("Fulano2",  "De tal", 30, 92.0, 1.74) );
-        lista.AdicionarPessoa( new Mulher("Fulana1", "De tal", 22, 80.0, 1.70) );
-        lista.AdicionarPessoa( new Mulher("Fulana2", "De tal", 32, 90.0, 1.72) );
+        String arquivo = "C:\\Users\\unicesumar\\ads\\imc\\lista.csv";
+        LeDadosCsv leitorCsv = new LeDadosCsv(arquivo);
+        leitorCsv.readFile();
 
-        lista.ImprimeListaCsv();
-        lista.ImprimeRelatorio();
+        ListaDePessoas pessoas = new ListaDePessoas(leitorCsv.GetSize());
+        List<String[]> dados = leitorCsv.getInfoList();
+
+        for (int i=0; i<leitorCsv.GetSize(); i++) {
+          String id = leitorCsv.getAtArrayIndex(dados.get(i), 0);
+          String sexo = leitorCsv.getAtArrayIndex(dados.get(i), 1);
+          String nome = leitorCsv.getAtArrayIndex(dados.get(i), 2);
+          String sobreNome = leitorCsv.getAtArrayIndex(dados.get(i), 3);
+          String idade = leitorCsv.getAtArrayIndex(dados.get(i), 4);
+          String peso = leitorCsv.getAtArrayIndex(dados.get(i), 5);
+          String altura = leitorCsv.getAtArrayIndex(dados.get(i), 6);
+
+          if (sexo.equals("masculino"))
+            pessoas.AdicionarPessoa( new Homem(nome, sobreNome,
+                                  Integer.parseInt(idade),
+                                  Double.parseDouble(peso),
+                                  Double.parseDouble(altura)/100) );
+          else
+            pessoas.AdicionarPessoa( new Mulher(nome, sobreNome,
+                                  Integer.parseInt(idade),
+                                  Double.parseDouble(peso),
+                                  Double.parseDouble(altura)/100) );
+        }
+
+
+
+
+
+        for (int i=0; i<leitorCsv.GetSize(); i++)
+          System.out.println(pessoas.GetPessoaCsv(i));
 
     }
 }
